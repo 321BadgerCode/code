@@ -2,12 +2,16 @@
 class file:
 	name:str=''
 	data:str=''
+	is_encrypted:bool=False
 	def __init__(self,name:str)->None:
 		self.name=name
 		self.create()
 		self.read()
 	def __str__(self)->str:
-		return self.data
+		if self.is_encrypted==True:
+			return self.name+"(encrypted): "+self.data
+		else:
+			return self.name+"(decrypted): "+self.data
 	def read(self)->None:
 		self.data=open(self.name,'r').read()
 	def write(self,a1:str)->None:
@@ -18,6 +22,7 @@ class file:
 	def close(self)->None:
 		open(self.name,'w').close()
 	def encrypt(self)->None:
+		self.is_encrypted=not self.is_encrypted
 		self.write(get_encrypt(self.data))
 
 class data:
@@ -37,7 +42,7 @@ if __name__=="__main__":
 	f=file(".\\test_1.txt")
 	f.write("hello world")
 	f.encrypt()
-	print("encrypt: "+f.data)
+	print(f)
 
 	print("\n")
 	a1=input("password: ")
@@ -46,8 +51,9 @@ if __name__=="__main__":
 	d=data("123")
 	if a1==d.password:
 		f.encrypt()
-		print("decrypt: "+f.data)
+		print(f)
 	else:
 		print("password incorrect!")
+		
 	print("\n")
 	print("[._.]: see you later :)")
