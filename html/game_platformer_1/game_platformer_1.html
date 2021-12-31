@@ -1,0 +1,59 @@
+<html>
+<a href="WebsiteThing.html">Back</a>
+<button type="button" onclick="Play()" title="Play level">Play</button>
+<span id="finish">E</span>
+<canvas id="canvas"></canvas>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            align-content: space-around;
+            background-color: #202830;
+            color: #ffffff;
+            display: grid;
+            justify-content: center;
+            overflow-y: hidden;
+            overflow-x: hidden;
+        }
+
+        canvas {
+            height: 800px;
+            width: 1200px;
+        }
+
+        a {
+            position: absolute;
+            color: red;
+        }
+        a:hover {
+            color: yellow;
+	    text-shadow: 0 0 10px yellow, 0 0 40px yellow, 0 0 100px yellow, 0 0 1000px yellow;
+        }
+        a:active {
+            color: black;
+	    text-shadow: 0 0 10px black, 0 0 40px black, 0 0 100px black, 0 0 1000px black;
+        }
+
+        #finish{
+            content: 'E';
+            transform: translate(1000px, 400px);
+            font-size: 50px;
+            color: white;
+            text-shadow: 0 0 10px white;
+        }
+
+        span::selection{
+            color: white;
+            background-color: none;
+        }
+    </style>
+<script src=".\game_1.java" type="text/javascript"></script>
+</html>
