@@ -1,0 +1,214 @@
+<div><p>Level:<span id="level">0</span></p></div>
+<canvas id="gc"width="1800"height="900"></canvas>
+<style>
+body{padding:0;margin:0;overflow:hidden;}canvas{width:75%;height:75%;transform:translate(17%,16%);}
+</style>
+<script>
+window.onload=function(){
+canv=document.getElementById("gc");
+ctx=canv.getContext("2d");
+document.addEventListener("keydown",keyPush);
+document.addEventListener("keyup",keyUp);
+setInterval(game,1000/15);
+ld=document.getElementById('level');
+}
+p1x=5,p1y=800,p1w=50,p1h=50,p1vx=0,p1vy=0;
+p2x=[],p2y=[],p2w=[],p2h=[],p2c=[],p2ct=[];
+fx=[],fy=[],fw=[],fh=[];
+ex=[],ey=[],ew=[],eh=[],ec=[],ed1=[],ed2=[],s=[],evx=[];
+stop=[0,0,0,0];
+level=0;
+levels=[0];
+var go=false;
+dx=[],dy=[];
+pressed=[0,0,0,0];
+paused=false;
+function game(){
+ld.innerHTML=level;
+for(i=0;i<ex.length;i++){
+if(paused==false){
+if(ex[i]>=ed1[i]-ew[i])evx[i]+=s[i];
+else if(ex[i]<=ed2[i]+ew[i])evx[i]-=s[i];
+ex[i]-=evx[i];
+}
+}
+if(paused==false){
+p1x+=p1vx;
+if(p1y<=900-p1h*2)p1vy++;
+p1y+=p1vy;
+}
+
+if(p1y>=900-p1h*2){stop[2]=0,p1vy=0;}
+if(p1x<=0+p1w-p1x*2){stop[0]=1,p1vx=0;}
+if(p1x>=1800-p1w){stop[1]=1,p1vx=0;}
+
+ctx.fillStyle="black";
+ctx.fillRect(0,0,canv.width,canv.height);
+
+ctx.fillStyle="white";
+ctx.font="20px Arial";
+ctx.fillText("Level:"+level,canv.width-canv.width+50,canv.height-canv.height+50);
+
+ctx.fillStyle="blue";
+ctx.fillRect(p1x,p1y,p1w,p1h);
+
+for(i=0;i<p2x.length;i++){
+ctx.fillStyle=p2c[i];
+ctx.fillRect(p2x[i],p2y[i],p2w[i],p2h[i]);
+}
+
+for(i=0;i<fx.length;i++){
+ctx.fillStyle="grey";
+ctx.fillRect(fx[i],fy[i],fw[i],fh[i]);
+}
+
+for(i=0;i<ex.length;i++){
+ctx.fillStyle=ec[i];
+ctx.fillRect(ex[i],ey[i],ew[i],eh[i]);
+}
+
+for(i=0;i<ex.length;i++){
+	if(ex[i]<=p1x+p1w&&ex[i]>=p1x-ew[i]&&ey[i]<=p1y+p1h&&ey[i]>=p1y-eh[i]){
+		ctx.fillStyle="red",ctx.fillRect(p1x,p1y,p1w,p1h);
+		alert('Hit!'),level=0,levels[0]=0,ex[i]=dx[i],ey[i]=dy[i],evx=0,p1x=0,p1y=800,stop=[0,0,0,0],go=false;
+	}
+}
+for(i=0;i<p2x.length;i++){
+	if(pressed[3]!=1&&p2x[i]<=p1x+p1w&&p2x[i]>=p1x-p2w[i]&&p2y[i]<=p1y+p1h&&p2y[i]>=p1y-p2h[i]){
+		p1y=p2y[i]-p1h,p1vy=0,stop[2]=0;
+		ctx.fillStyle=p2ct[i];
+	ctx.fillRect(p2x[i],p2y[i],p2w[i],p2h[i]);
+	}
+	/*elseif(p1y+p1h>p2y[i]-p2h[i]&&p2x[i]<=p1x+p1w&&p2x[i]>=p1x-p2w[i]&&p2y[i]<=p1y+p1h&&p2y[i]>=p1y-p2h[i]){
+		if(p1x>p2x[i]-p2w[i]*2)p1x=p2x[i]-p1w*2,stop[1]=1;
+		if(p1x<p2x[i]-p2w[i]*2)p1x=p2x[i]+p1w*2,stop[0]=1;
+		ctx.fillStyle=p2ct[i];
+	ctx.fillRect(p2x[i],p2y[i],p2w[i],p2h[i]);
+	}*/
+	}
+for(i=0;i<fx.length;i++){
+	if(fx[i]<=p1x+p1w&&fx[i]>=p1x-fw[i]&&fy[i]<=p1y+p1h&&fy[i]>=p1y-fh[i]&&go==false){
+		level++;
+	ctx.fillStyle="lime";
+	ctx.fillRect(fx[i],fy[i],fw[i],fh[i]);
+		go=true;
+	}
+	}
+
+if(level==0&&levels[0]==0){
+p1x=0,p1y=900-p1h*2,p1w=20,p1h=30,p1vx=0,p1vy=0;
+p2x=[500,200,1000,1300,1200],p2y=[700,800,600,600,700],p2w=[100,100,20,150,100],p2h=[10,10,5,20,200],p2c=['white','white','purple','white'],p2ct=['red','lime','blue','red'];
+fx=[1300],fy=[500],fw=[100],fh=[100];
+ex=[1780],ey=[850],ew=[50],eh=[50],ec=['red'],ed1=[1780],ed2=[1000],s=[5],evx=[5],dx=[1780],dy=[850];
+levels[0]=1;
+}
+
+if(level==1&&levels[0]==1){
+go=false;
+p1x=0,p1y=800,p1w=50,p1h=50,p1vx=0,p1vy=0;
+p2x=[500,800],p2y=[700,500],p2w=[100,50],p2h=[10,15];
+fx=[1300],fy=[500],fw=[100],fh=[100];
+ex=[850],ey=[800],ew=[100],eh=[100],ec=['orange'],ed1=[1780],ed2=[500],s=[.5],evx=[5],dx=[850],dy=[800];
+levels[0]=2;
+}
+if(level==2&&levels[0]==2){
+go=false;
+p1x=0,p1y=800,p1w=50,p1h=50,p1vx=0,p1vy=0;
+p2x=[500,800,1050],p2y=[700,700,700],p2w=[100,50,100],p2h=[10,15,10],p2c=['white','white','white'],p2ct=['white','white','white','white'];
+fx=[1300],fy=[500],fw=[100],fh=[100];
+ex=[850],ey=[800],ew=[50],eh=[30],ec=['purple'],ed1=[1780],ed2=[500],s=[.5],evx=[5],dx=[850],dy=[800];
+levels[0]=3;
+}
+if(level==3&&levels[0]==3){
+go=false;
+p1x=0,p1y=800,p1w=50,p1h=50,p1vx=0,p1vy=0;
+p2x=[0,900,1500],p2y=[600,600,600],p2w=[100,100,100],p2h=[5,5,5],p2c=['white','yellow','white'],p2ct[1]='red';
+fx=[1300],fy=[500],fw=[100],fh=[100];
+ex=[850,1500],ey=[800,550],ew=[30,50],eh=[100,50],ec=['yellow','red'],ed1=[1780,1600],ed2=[500,1450],s=[.1,1],evx=[5,10],dx=[850,1500],dy=[800,550];
+levels[0]=4;
+}
+if(level==4&&levels[0]==4){
+go=false;
+p1x=0,p1y=800,p1w=10,p1h=10,p1vx=0,p1vy=0;
+p2x=[0,900,1500],p2y=[800,800,800],p2w=[100,100,100],p2h=[15,15,15],p2c=['yellow','green','orange'],p2ct=['red','red','red'];
+fx=[1300],fy=[500],fw=[100],fh=[100];
+ex=[850],ey=[700],ew=[50],eh=[200],ec=['orange'],ed1=[1780],ed2=[0],s=[5],evx=[5],dx=[850],dy=[700];
+levels[0]=5;
+}
+if(level==5&&levels[0]==5){
+go=false;
+p1x=0,p1y=0,p1w=50,p1h=40,p1vx=0,p1vy=0;
+p2x=[0,900,1500],p2y=[100,500,800],p2w=[100,200,100],p2h=[2,2,25],p2c=['white','white','white'],p2ct[2]='lime';
+fx=[1500],fy=[700],fw=[100],fh=[100];
+ex=[700],ey=[450],ew=[30],eh=[50],ec=['red'],ed1=[1100],ed2=[800],s=[5],evx=[10],dx=[700],dy=[450];
+levels[0]=6;
+}
+if(level==6&&levels[0]==6){
+go=false;
+p1x=0,p1y=450,p1w=50,p1h=50,p1vx=0,p1vy=0;
+p2x=[0,900,1500],p2y=[700,500,700],p2w=[100,100,100],p2h=[2,2,2],p2ct=['green','yellow','orange'];
+fx=[1500],fy=[700],fw=[100],fh=[100];
+ex=[700],ey=[450],ew=[30],eh=[50],ec=['red'],ed1=[700],ed2=[701],s=[.5],evx=[5],dx=[700],dy=[450];
+levels[0]=7;
+}
+if(level==7&&levels[0]==7){
+go=false;
+p1x=0,p1y=0,p1w=50,p1h=40,p1vx=0,p1vy=0;
+p2x=[0,600,1200],p2y=[700,500,300],p2w=[100,100,100],p2h=[2,2,2],p2c[0]='blue',p2ct=['green','red','purple'];
+fx=[1700],fy=[0],fw=[100],fh=[200];
+ex=[900],ey=[350],ew=[20],eh=[20],ec=['green'],ed1=[900],ed2=[850],s=[.5],evx=[5],dx=[900],dy=[350];
+levels[0]=8;
+}
+if(level==8&&levels[0]==8){
+go=false;
+p1x=0,p1y=0,p1w=50,p1h=40,p1vx=0,p1vy=0;
+p2x=[0,600,1200],p2y=[700,500,700],p2w=[100,50,100],p2h=[2,5,2],p2c[0]='blue',p2ct=['green','red','purple'];
+fx=[1700],fy=[500],fw=[100],fh=[200];
+ex=[900],ey=[350],ew=[20],eh=[20],ec=['green'],ed1=[900],ed2=[850],s=[.5],evx=[5],dx=[900],dy=[350];
+levels[0]=9;
+}
+if(level==9&&levels[0]==9){
+go=false;
+p1x=0,p1y=0,p1w=50,p1h=40,p1vx=0,p1vy=0;
+p2x=[0,600,1200],p2y=[700,500,700],p2w=[100,50,100],p2h=[50,5,200],p2c[0]='blue',p2ct=['green','red','purple'];
+fx=[1700],fy=[500],fw=[100],fh=[200];
+ex=[900],ey=[350],ew=[20],eh=[20],ec=['green'],ed1=[900],ed2=[850],s=[.5],evx=[5],dx=[900],dy=[350];
+levels[0]=10;
+}
+}
+function keyPush(evt){
+switch(evt.keyCode){
+	case 37:
+		if(stop[0]==0)p1vx=-20,stop[1]=0,pressed[0]=1;
+		break;
+	case 39:
+		if(stop[1]==0)p1vx=20,stop[0]=0,pressed[1]=1;
+		break;
+	case 32:
+		if(stop[2]==0)p1vy-=20,stop[2]=1,pressed[2]=1;
+		break;
+	case 40:
+		pressed[3]=1;
+		break;
+	case 80:
+		paused=!paused;
+		break;
+}
+}
+function keyUp(evt){
+switch(evt.keyCode){
+	case 37:
+		p1vx=0;
+		break;
+	case 39:
+		p1vx=0
+		break;
+	case 32:
+		pressed[2]=0;
+		break;
+	case 40:
+		pressed[3]=0;
+		break;
+}
+}
+</script>
