@@ -1,0 +1,4 @@
+-console
+	*text::print():get fg+bg color working on same text @ same time.
+		*=CONSOLE.print(new console::text{.a="test.",.fg=color::red2,.bg=color::light_blue2});
+	*set console size.

@@ -1,0 +1,16 @@
+-operator customization
+	*let user make argument names 4 operator
+		*=
+			#define $OPERATOR(name,return_type,left,right)\
+				return_type get_##name(const left,const right);\
+				\
+				rhino::op_obj< return_type , typeof(left), typeof(right) > name(&get_##name);\
+				\
+				return_type get_##name(const left,const right)
+	*let user make operators w/ trailing return type
+		*=
+			template<typename A,typename B>$OPERATOR(add,auto,A a1,B a2)->decltype(a1+a2){
+				return a1+a2;
+			}
+	//*add 'sin','lim','log','delta','integral','epsilon' functions.
+-info::user::get_ip_address()

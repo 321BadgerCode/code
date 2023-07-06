@@ -1,0 +1,85 @@
+<!--badger-->
+<link rel="stylesheet" type="text/css" href="../css/box.css"/>
+<link rel="stylesheet" type="text/css" href="../css/code.css"/>
+<link rel="stylesheet" type="text/css" href="../css/main.css"/>
+<link rel="stylesheet" type="text/css" href="../css/nav_bar.css"/>
+<link rel="stylesheet" type="text/css" href="../css/side_bar.css"/>
+
+<script src="../js/code.js"></script>
+
+<xml id="xml_data" src="../xml/test.xml"></xml>
+
+<a href="../../doc.html" style="font-size: 125%;">back</a>
+
+<h1>define.h</h1>
+<div class="box" style="display: inline-block;vertical-align: top;width: 15%;">
+	<center>contents:</center>
+	<ul>
+		<li><a href="##summary"><span>summary</span></a></li>
+		<li><a href="##escape_sequence.h"><span>escape_sequence.h</span></a></li>
+		<li><a href="##etc.h"><span>etc.h</span></a></li>
+	</ul>
+</div>
+
+<h2>summary</h2>
+<div class="box" style="display: inline-block;vertical-align: top;width: 25%;">
+	the define.h file defines things that r used by the library.
+	<p>&NewLine;</p>
+	4 ex.:
+	<p class="code">
+		using namespace std;
+	</p>
+	<table>
+		<tbody>
+			<tr><td>test</td></tr>
+			<tr><td>test</td></tr>
+		</tbody>
+	</table>
+	<div class="code">
+		<div id="header">
+			c++ code
+			<button onclick="copy_code()"><span></span></button>
+		</div>
+		<div id="txt">
+			<p>first line</p>
+			<p>   indented line followed by empty line</p>
+			<p></p>
+			<p>the following line consists of one single space</p>
+			<p> </p>
+			<p>this line has a space at the end </p>
+			<p>&#9;and one leading and ending tab&#9;</p>
+			<p>fill to</p>
+			<p>ten</p>
+			<p>lines</p>
+		</div>
+	</div>
+	is a term that is needed throughout the library, so it's defined in define.h.
+	<p>&NewLine;</p>
+	another ex.:
+	<p class="code">
+		$I get_add($CI a1,$CI a2){
+			return a1+a2;
+		}
+	</p>
+	'$I' expands 2 'int' & it's defined in define.h, so 'int' doesn't have 2 be typed out throughout the lib. every time it's needed.
+	'$CI' expands 2 'const int'.
+</div>
+
+<h2>escape_sequence.h</h2>
+<p>stores escape sequences such as ESC(\33) & NUL(\0).</p>
+
+<h2>etc.h</h2>
+<p>defines operator macro.</p>
+
+<table datasrc="#xml_data" border=1>
+	<thead><th>animal</th><th>type</th><th>name</th></thead>
+	<tr>
+		<td><span datafld="animal"></span></td>
+		<td><span datafld="type"></span></td>
+		<td><span datafld="name"></span></td>
+	</tr>
+</table>
+<!--fix xml : https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms763816(v=vs.85)-->
+<!--header 4 code w/ code info.-->
+<!--line #-->
+<!--copy button 4 code-->

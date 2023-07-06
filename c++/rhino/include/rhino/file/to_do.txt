@@ -1,0 +1,2 @@
+-folder func. thing(idk what does)
+	*=$V READ(){DIR *b1;struct dirent *b2;b1=opendir(FOLDER.c_str());while((b2=readdir(b1))!=NULL){printf("%s\n",b2->d_name);}closedir(b1);}

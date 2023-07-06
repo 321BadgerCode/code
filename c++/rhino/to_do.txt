@@ -1,0 +1,18 @@
+-add .hpp template thing 4 all .h scripts.
+-add ~...() 2 classes 4 memory manage/allocation(delete this->...).
+
+#make vs code ext. 2 auto. 4 def. & def. of c++ scripts.
+#cracker barrel peg solitare solver.
+
+#ti-84 coding in c++.
+
+-rock,paper,scissor game in c++.
+	-use switch case 4 usr. input logic.
+
+-add bin,oct,hex conversions + bin. addition, etc..
+
+https://docs.microsoft.com/en-us/troubleshoot/developer/visualstudio/cpp/language-compilers/read-xml-data-from-file
+https://www.xml.com/pub/a/1999/11/cplus/
+https://www.codeproject.com/Articles/5588/Simple-C-class-for-XML-writing
+https://www.codeproject.com/articles/176236/parsing-an-xml-file-in-a-c-c-program
+https://stackoverflow.com/questions/70684671/how-do-i-read-write-json-with-c

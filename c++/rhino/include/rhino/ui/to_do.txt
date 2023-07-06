@@ -1,0 +1,10 @@
+-fix mixing 'rgb'(|),etc.
+-convert to 8 bit, 24, then mix?
+-#define $CLR(clr,txt) "\33[0;5;"+to_string(##clr##)+"m"+##txt##+"\33[0m";
+	-look at old lib. 4 clr. sys. like "{red}hello{end}"
+-make diff. typedef struct for 4,8,24 bit.
+	-overload cast 4 each typedef to each other typedef.
+		-(clr_4)*color::red2;
+		-(clr_4)*color::red3;
+		-(clr_24)*color::red2;
+		-etc.

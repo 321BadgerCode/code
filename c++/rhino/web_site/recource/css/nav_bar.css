@@ -1,0 +1,22 @@
+/*badger*/
+.nav_bar{
+	width: calc(100% - 200px);
+	margin-left: 200px;
+	transition: all 0.5s ease;
+}
+.nav_bar{
+	background: rgb(7, 105, 185);
+	height: 50px;
+	display: flex;
+	align-items: center;
+	padding: 0 30px;
+ 
+}
+.nav_bar a{
+	font-size: 28px;
+	color: #f4fbff;
+	margin: 10px;
+}
+.nav_bar a:hover{
+	color: #a2ecff;
+}

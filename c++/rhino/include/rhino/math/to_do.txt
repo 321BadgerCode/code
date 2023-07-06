@@ -1,0 +1,2 @@
+-template class vector<float>;
+	-idk y use, but is cool.

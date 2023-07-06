@@ -1,0 +1,41 @@
+/*badger*/
+.side_bar{
+	background: #5e5e5e;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 225px;
+	height: 100%;
+	padding: 20px 0;
+	transition: all 0.5s ease;
+}
+.side_bar .logo{
+	margin-bottom: 30px;
+	text-align: center;
+}
+.side_bar .logo img{
+	display: block;
+	width: 250px;
+	height: 100px;
+	border-radius: 50%;
+	margin: 0 auto;
+}
+.side_bar ul li a{
+	display: block;
+	padding: 13px 30px;
+	border-bottom: 1px solid #424242;
+	color: white;
+	font-size: 15px;
+	position: relative;
+}
+.side_bar ul li a:hover,.side_bar ul li a.active{
+	color: #5e5e5e;
+	background:white;
+	border-right: 5px solid cyan;
+}
+.side_bar ul li a:hover .icon,.side_bar ul li a.active .icon{
+	color: #5e5e5e;
+}
+.side_bar ul li a:hover:before,.side_bar ul li a.active:before{
+	display: block;
+}

@@ -1,0 +1,29 @@
+/*badger*/
+.code{
+	color: white;
+	background: #202020;
+	border: 5px solid grey;
+	box-sizing: border-box;
+	max-width: 50%;
+	max-height: 50%;
+	width: max-content;
+	margin: 10px;
+	word-wrap: break-word;
+}
+.code::before{
+	counter-reset: line;
+}
+.code p{
+	counter-increment: line;
+}
+.code p::before{
+	content: counter(line) ". ";
+}
+.code #header{
+	position: inherit;
+	text-align: center;
+	border: 3px dotted grey;
+}
+.code #header button::before{
+	content: "copy";
+}
