@@ -1,0 +1,74 @@
+\documentclass{article}
+
+\title{Guessing Algorithms in LaTeX}
+\author{Your Name}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Binary Search Guessing Algorithm}
+\textbf{Input:} $target$, $low$, $high$ \\
+\textbf{Output:} Number of guesses
+
+\begin{verbatim}
+low = 1
+high = 100
+guesses = 0
+
+while low <= high:
+    mid = (low + high) / 2
+    guesses = guesses + 1
+
+    if mid == target:
+        return guesses
+    elif mid < target:
+        low = mid + 1
+    else:
+        high = mid - 1
+\end{verbatim}
+
+\section{Exponential Search Guessing Algorithm}
+\textbf{Input:} $target$ \\
+\textbf{Output:} Number of guesses
+
+\begin{verbatim}
+guess = 1
+guesses = 1
+
+while guess < target:
+    guess = guess * 2
+    guesses = guesses + 1
+
+low = guess / 2
+high = min(guess, 100)
+
+while low <= high:
+    mid = (low + high) / 2
+    guesses = guesses + 1
+
+    if mid == target:
+        return guesses
+    elif mid < target:
+        low = mid + 1
+    else:
+        high = mid - 1
+\end{verbatim}
+
+\section{Monte Carlo Guessing Algorithm}
+\textbf{Input:} $target$, $iterations$ \\
+\textbf{Output:} Number of guesses
+
+\begin{verbatim}
+guesses = 0
+
+for i = 1 to iterations:
+    guess = random number between 1 and 100
+    guesses = guesses + 1
+
+    if guess == target:
+        return guesses
+\end{verbatim}
+
+\end{document}

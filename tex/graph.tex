@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{matrix, positioning}
+
+\begin{document}
+
+\title{Eigenvalues and Eigenvectors in Graph Analysis and Network Centrality}
+\author{Badger Code}
+\date{\today}
+\maketitle
+
+\section{Introduction}
+
+Eigenvalues and eigenvectors are fundamental concepts in linear algebra that have widespread applications in various fields. In this paper, we explore how eigenvalues and eigenvectors are utilized in graph analysis and network centrality, with examples and diagrams to illustrate their importance.
+
+\section{Eigenvalues and Eigenvectors: An Overview}
+
+Eigenvalues and eigenvectors are properties of square matrices. Given a square matrix $A$, an eigenvector $\mathbf{v}$ and its corresponding eigenvalue $\lambda$ satisfy the equation:
+
+\[ A\mathbf{v} = \lambda\mathbf{v} \]
+
+\subsection{Calculating Eigenvalues and Eigenvectors}
+
+To find the eigenvalues and eigenvectors of a matrix, we solve the characteristic equation:
+
+\[ \det(A - \lambda I) = 0 \]
+
+where $I$ is the identity matrix. The solutions to this equation yield the eigenvalues. Once we have the eigenvalues, we can find the corresponding eigenvectors by solving the equation $(A - \lambda I)\mathbf{v} = 0$.
+
+\section{Graph Analysis with Adjacency Matrix}
+
+In graph theory, a graph can be represented using an adjacency matrix. Let's consider a simple example of a graph with five nodes:
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=2em,minimum width=2em]
+  {
+     & 1 & \\
+     2 &   & 3 \\
+     & 4 & \\
+  };
+  \path[-stealth]
+    (m-2-1) edge node [left] {1} (m-1-2)
+            edge node [below] {2} (m-3-2)
+    (m-1-2) edge node [right] {3} (m-2-3)
+    (m-3-2) edge node [right] {4} (m-2-3)
+    (m-2-3) edge node [above] {5} (m-1-2)
+            edge node [below] {6} (m-3-2);
+\end{tikzpicture}
+\caption{Example graph represented by an adjacency matrix.}
+\end{figure}
+
+The adjacency matrix $A$ for this graph is:
+
+\[ A = \begin{bmatrix}
+0 & 1 & 0 & 0 & 0 \\
+1 & 0 & 1 & 0 & 1 \\
+0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 \\
+\end{bmatrix} \]
+
+\subsection{Eigenvalues and Eigenvectors in Graph Analysis}
+
+The eigenvalues and eigenvectors of the adjacency matrix are essential in graph analysis. For example:
+
+\begin{itemize}
+\item The number of connected components in the graph is related to the number of eigenvalues equal to zero.
+\item The graph's diameter can be determined from the eigenvalues of the adjacency matrix.
+\item The spectral radius, the largest eigenvalue in magnitude, provides information about the graph's connectivity and robustness.
+\end{itemize}
+
+\section{Network Centrality}
+
+Network centrality measures the importance of nodes in a network. Eigenvectors play a crucial role in centrality measures, such as the PageRank algorithm used by search engines.
+
+\subsection{PageRank Algorithm}
+
+In the PageRank algorithm, the importance of a web page is determined by its eigenvector centrality in the web graph. The PageRank vector $\mathbf{p}$ satisfies the equation:
+
+\[ \mathbf{p} = \alpha A \mathbf{p} + \frac{1-\alpha}{N}\mathbf{v} \]
+
+where $A$ is the adjacency matrix of the web graph, $N$ is the number of nodes, and $\mathbf{v}$ is the teleportation vector. The parameter $\alpha$ controls the probability of a random surfer following a hyperlink.
+
+\section{Conclusion}
+
+Eigenvalues and eigenvectors are powerful tools in graph analysis and network centrality. Their applications extend to various fields, including computer science, data science, and information retrieval. Understanding these concepts allows us to gain valuable insights into the structures and properties of complex networks.
+
+\end{document}

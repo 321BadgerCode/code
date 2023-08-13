@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+
+\begin{document}
+
+\title{Recommender Systems: Singular Value Decomposition (SVD) and Matrix Factorization}
+\author{Badger Code}
+\date{\today}
+\maketitle
+
+\section{Introduction}
+
+Recommender systems have become ubiquitous in modern-day applications, aiding users in discovering relevant content or products based on their preferences and behavior. In this paper, we explore two essential techniques, Singular Value Decomposition (SVD) and Matrix Factorization, used in Collaborative Filtering-based recommender systems.
+
+\section{Collaborative Filtering}
+
+Collaborative Filtering is a widely used approach in recommender systems that leverages the opinions or behaviors of multiple users to make recommendations. It works based on the idea that users with similar tastes in the past will have similar preferences in the future.
+
+\subsection{User-User Collaborative Filtering}
+
+In User-User Collaborative Filtering, we compute the similarity between users based on their interaction history. The similarity metric can be cosine similarity, Pearson correlation, or any other distance measure.
+
+\subsection{Item-Item Collaborative Filtering}
+
+Item-Item Collaborative Filtering focuses on finding similarities between items based on user interactions. It identifies items that are frequently rated or purchased together and recommends similar items to users.
+
+\section{Singular Value Decomposition (SVD) in Recommender Systems}
+
+SVD is a matrix factorization technique widely used in recommender systems to uncover latent factors that influence user-item interactions. The goal of SVD is to decompose the user-item interaction matrix into three matrices:
+
+\[ R = U \Sigma V^T \]
+
+where:
+- $R$ is the user-item interaction matrix,
+- $U$ is the user matrix representing latent user preferences,
+- $\Sigma$ is a diagonal matrix with singular values representing the importance of latent factors,
+- $V^T$ is the item matrix representing latent item attributes.
+
+\subsection{Matrix Approximation with SVD}
+
+SVD allows us to approximate the original user-item matrix $R$ with a lower-rank approximation $\hat{R}$. By selecting the top $k$ singular values and their corresponding vectors, we can reduce the dimensionality and capture the most important latent factors.
+
+\subsection{SVD-based Recommendation}
+
+SVD-based recommendation involves predicting missing values in the user-item matrix $\hat{R}$ to generate personalized recommendations. Predictions can be made using the dot product of the user and item latent factors.
+
+\section{Matrix Factorization for Collaborative Filtering}
+
+Matrix Factorization is a broader term that encompasses SVD and other similar techniques used to factorize matrices in recommender systems.
+
+\subsection{Gradient Descent Optimization}
+
+Matrix Factorization is often achieved through optimization algorithms like Gradient Descent, which minimizes the difference between the predicted and observed ratings.
+
+\subsection{Regularization}
+
+Regularization is used in matrix factorization to prevent overfitting and improve generalization. It introduces regularization terms in the optimization process.
+
+\section{Conclusion}
+
+Recommender systems are integral to modern applications, and collaborative filtering is a powerful approach to provide personalized recommendations to users. Singular Value Decomposition (SVD) and Matrix Factorization are fundamental techniques in collaborative filtering, enabling efficient and accurate recommendations. Researchers and practitioners continue to innovate and improve these techniques to enhance user experience and satisfaction in recommender systems.
+
+\end{document}

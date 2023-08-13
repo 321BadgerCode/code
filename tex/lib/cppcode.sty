@@ -1,0 +1,34 @@
+% cppcode.sty
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cppcode}[2023/08/11 C++ code syntax highlighting]
+
+\RequirePackage{color}
+
+% Define colors for syntax highlighting
+\definecolor{keywordcolor}{rgb}{0,0,1}       % Blue
+\definecolor{commentcolor}{rgb}{0,0.5,0}     % Green
+\definecolor{stringcolor}{rgb}{0.5,0,0.5}    % Purple
+
+% Define the cppcode environment
+\newenvironment{cppcode}{
+  \verbatim
+  \catcode`\"=12 % Disable " character
+  \catcode`\\=12 % Disable \ character
+  \cppcodecolor
+}{
+  \endverbatim
+}
+
+% Set the color for syntax highlighting
+\newcommand{\cppcodecolor}{
+  \color{black} % Reset to black
+  \let\colorkeyword\textcolor{keywordcolor}
+  \let\colorcomment\textcolor{commentcolor}
+  \let\colorstring\textcolor{stringcolor}
+  \def\lst@lettertrue{\let\lst@ifletter\iffalse}
+  \def\lst@letterfalse{\let\lst@ifletter\iftrue}
+  \let\lst@OutputBox\relax
+  \lst@InitColor
+}
+
+\endinput

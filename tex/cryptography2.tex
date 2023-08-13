@@ -1,0 +1,202 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+\title{Cryptography and Number Theory: \\
+       Study of Mathematical Principles behind Encryption Algorithms, \\
+       Public-key Cryptography, and the Security of Digital Communication}
+\author{Badger Code}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+Cryptography is the science of secure communication, protecting sensitive information from unauthorized access. It is a fundamental aspect of modern computing and plays a critical role in securing digital communication, financial transactions, and sensitive data storage. The mathematical foundation of cryptography is deeply rooted in number theory, a branch of pure mathematics that deals with the properties and relationships of numbers. This paper explores the mathematical principles behind encryption algorithms, public-key cryptography, and their crucial role in ensuring the security of digital communication.
+
+\section{Number Theory in Cryptography}
+Number theory forms the backbone of cryptography, providing the mathematical tools and concepts necessary to design secure cryptographic algorithms. Two essential concepts in number theory are modular arithmetic and Euler's totient function.
+
+\subsection{Modular Arithmetic}
+Modular arithmetic, also known as clock arithmetic, is the study of arithmetic operations involving remainders. For integers $a$ and $b$ with $b > 0$, the modulo operation is represented as $a \bmod b$, and it calculates the remainder when $a$ is divided by $b$.
+
+Modular arithmetic is fundamental in cryptographic algorithms like the Caesar cipher, which is a type of substitution cipher where each letter in the plaintext is shifted by a fixed number of positions down the alphabet.
+
+\subsubsection{Example: Caesar Cipher}
+Let's consider a simple example of the Caesar cipher with a shift of 3. The alphabet is represented as $A=0, B=1, C=2, \ldots, Z=25$. We want to encrypt the plaintext "HELLO."
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Plaintext & H & E & L & L & O \\
+\hline
+Numeric Equivalent & 7 & 4 & 11 & 11 & 14 \\
+\hline
+Shift by 3 & 10 & 7 & 14 & 14 & 17 \\
+\hline
+Ciphertext & K & H & O & O & R \\
+\hline
+\end{tabular}
+\end{center}
+
+The encrypted message is "KHOO-R."
+
+\subsection{Euler's Totient Function}
+Euler's totient function $\phi(n)$ is a crucial concept in number theory and is used in various cryptographic applications. For a positive integer $n$, $\phi(n)$ counts the number of positive integers less than $n$ that are coprime to $n$ (i.e., the numbers whose greatest common divisor with $n$ is 1).
+
+Euler's totient function has significant applications in public-key cryptography, where it is utilized to compute the public and private keys.
+
+\subsubsection{Example: Computing $\phi(n)$}
+Let's calculate $\phi(10)$ as an example. We need to find the count of positive integers less than 10 that are coprime to 10.
+
+\begin{align*}
+\text{Numbers less than 10:} & \quad 1, 2, 3, 4, 5, 6, 7, 8, 9 \\
+\text{Coprime to 10:} & \quad 1, 3, 7, 9 \\
+\end{align*}
+
+Thus, $\phi(10) = 4$.
+
+\section{Symmetric Encryption Algorithms}
+Symmetric encryption algorithms use the same key for both encryption and decryption. They are efficient for encrypting large volumes of data and are commonly used in securing digital communication.
+
+\subsection{Caesar Cipher}
+The Caesar cipher, mentioned earlier, is a straightforward symmetric encryption technique based on modular arithmetic. Despite its simplicity, the Caesar cipher is highly vulnerable to attacks, especially with the availability of modern computing power.
+
+\subsubsection{Weakness of Caesar Cipher}
+The Caesar cipher has only 26 possible keys (the number of letters in the English alphabet), making it vulnerable to brute force attacks. With a limited number of keys, an attacker can easily try all possible shifts to decrypt the ciphertext.
+
+\subsection{AES (Advanced Encryption Standard)}
+The Advanced Encryption Standard (AES) is a widely used symmetric encryption algorithm. It operates on blocks of data and uses a variable-length key (128, 192, or 256 bits). AES has become the de facto standard for securing sensitive data due to its security and efficiency.
+
+\subsubsection{Key Generation}
+To use AES, a key of appropriate length is generated. The strength of AES depends on the length of the key used, with longer keys providing better security.
+
+\subsubsection{Encryption and Decryption}
+AES operates on a block of data (e.g., 128 bits) and a key of the same length. The encryption process involves multiple rounds of substitution, permutation, and mixing of the data and the key. The same steps are reversed for decryption.
+
+\subsubsection{Security of AES}
+AES is widely regarded as secure and has withstood extensive cryptanalysis. It has been adopted by various organizations and governments for securing classified information.
+
+\section{Public-key Cryptography}
+Public-key cryptography, also known as asymmetric cryptography, employs a pair of keys: a public key and a private key. The public key is openly distributed, while the private key is kept secret.
+
+\subsection{RSA Algorithm}
+The RSA algorithm, invented by Ron Rivest, Adi Shamir, and Leonard Adleman in 1977, is a popular public-key cryptosystem. It relies on the mathematical properties of large prime numbers and Euler's totient function.
+
+\subsubsection{Key Generation}
+The RSA key generation involves the following steps:
+\begin{enumerate}
+    \item Select two large prime numbers $p$ and $q$.
+    \item Compute the modulus $n = p \times q$.
+    \item Compute Euler's totient function $\phi(n) = (p-1) \times (q-1)$.
+    \item Choose an integer $e$ such that $1 < e < \phi(n)$ and $\text{gcd}(e, \phi(n)) = 1$. This is the public key exponent.
+    \item Calculate the private key exponent $d$ such that $d \equiv e^{-1} \bmod \phi(n)$.
+\end{enumerate}
+
+\subsubsection{Encryption and Decryption}
+To encrypt a plaintext message $M$ using RSA, the recipient's public key $(n, e)$ is used to compute the ciphertext $C$ as $C \equiv M^e \bmod n$.
+
+To decrypt the ciphertext $C$ and retrieve the original plaintext $M$, the recipient uses their private key exponent $d$ as $M \equiv C^d \bmod n$.
+
+\subsubsection{Example: RSA Encryption and Decryption}
+Suppose Alice wants to send a confidential message to Bob using RSA. Bob has a public key $(n, e)$, and he has shared his public key with Alice.
+
+\begin{enumerate}
+    \item \textbf{Key Generation (by Bob):}
+        \begin{align*}
+            p &= 61, \quad q = 53 \\
+            n &= p \times q = 61 \times 53 = 3233 \\
+            \phi(n) &= (p-1) \times (q-1) = 60 \times 52 = 3120 \\
+            e &= 17 \\
+            d &\equiv e^{-1} \bmod \phi(n) = 2753
+        \end{align*}
+    \item \textbf{Encryption (by Alice):}
+        \begin{align*}
+            \text{Plaintext} &= \text{"HELLO"} \\
+            \text{Numeric Equivalent} &= 7, 4, 11, 11, 14 \\
+            \text{Encryption using public key (n, e)} &: \\
+            C_1 &\equiv 7^{17} \bmod 3233 = 3088 \\
+            C_2 &\equiv 4^{17} \bmod 3233 = 2915 \\
+            C_3 &\equiv 11^{17} \bmod 3233 = 1971 \\
+            C_4 &\equiv 11^{17} \bmod 3233 = 1971 \\
+            C_5 &\equiv 14^{17} \bmod 3233 = 2512 \\
+            \text{Ciphertext} &= 3088, 2915, 1971, 1971, 2512
+        \end{align*}
+    \item \textbf{Decryption (by Bob):}
+        \begin{align*}
+            \text{Ciphertext} &= 3088, 2915, 1971, 1971, 2512 \\
+            \text{Decryption using private key (d)} &: \\
+            M_1 &\equiv 3088^{2753} \bmod 3233 = 7 \\
+            M_2 &\equiv 2915^{2753} \bmod 3233 = 4 \\
+            M_3 &\equiv 1971^{2753} \bmod 3233 = 11 \\
+            M_4 &\equiv 1971^{2753} \bmod 3233 = 11 \\
+            M_5 &\equiv 2512^{2753} \bmod 3233 = 14 \\
+            \text{Plaintext} &= \text{"HELLO"}
+        \end{align*}
+\end{enumerate}
+
+\subsection{Diffie-Hellman Key Exchange}
+The Diffie-Hellman key exchange is a method for securely exchanging cryptographic keys over an insecure channel. It allows two parties to agree on a shared secret key without directly transmitting it.
+
+\subsubsection{Key Exchange Process}
+The key exchange process involves the following steps:
+
+\begin{enumerate}
+    \item \textbf{Setup (Pre-shared Information):}
+    \begin{itemize}
+        \item Choose a large prime number $p$ and a primitive root modulo $p$, represented as $g$.
+        \item Both parties agree on these values $p$ and $g$ (usually done offline or through secure channels).
+    \end{itemize}
+
+    \item \textbf{Key Generation (by Alice and Bob):}
+    \begin{itemize}
+        \item Alice and Bob each select a private key: $a$ for Alice and $b$ for Bob, where $0 < a, b < p$.
+        \item They then compute their respective public keys:
+            \begin{align*}
+                \text{Public key of Alice: } A &\equiv g^a \bmod p \\
+                \text{Public key of Bob: } B &\equiv g^b \bmod p
+            \end{align*}
+        \item Alice and Bob exchange their public keys $A$ and $B$ with each other over the insecure channel.
+    \end{itemize}
+
+    \item \textbf{Shared Secret Key Calculation (by Alice and Bob):}
+    \begin{itemize}
+        \item Alice computes the shared secret key using Bob's public key:
+            \[ \text{Shared Secret Key: } K_A \equiv B^a \bmod p \]
+        \item Bob computes the shared secret key using Alice's public key:
+            \[ \text{Shared Secret Key: } K_B \equiv A^b \bmod p \]
+    \end{itemize}
+\end{enumerate}
+
+At the end of the process, both Alice and Bob have calculated the same shared secret key $K$, which can then be used for symmetric encryption.
+
+\section{Security of Digital Communication}
+The mathematical principles of number theory underpin the security of digital communication. By using encryption algorithms based on number theory and implementing secure key exchange protocols, sensitive information can be transmitted securely over public networks.
+
+\subsection{Cryptographic Attacks}
+While many encryption algorithms and protocols are considered secure, cryptographic attacks continuously evolve. Some common cryptographic attacks include:
+
+\begin{itemize}
+    \item \textbf{Brute Force Attack:} Trying all possible keys until the correct one is found. Longer key lengths increase the computational effort required for such attacks.
+
+    \item \textbf{Frequency Analysis:} Analyzing the frequency of characters or patterns in ciphertext to deduce the plaintext, particularly useful against weak ciphers like the Caesar cipher.
+
+    \item \textbf{Chosen-Plaintext Attack:} An attacker can choose specific plaintexts and observe the corresponding ciphertexts to gather information about the encryption algorithm.
+
+    \item \textbf{Chosen-Ciphertext Attack:} Similar to the chosen-plaintext attack, but the attacker can choose ciphertexts and observe the corresponding decrypted plaintexts.
+
+    \item \textbf{Man-in-the-Middle Attack:} Intercepting and altering communication between two parties, often through the modification of public keys or encryption keys during the key exchange process.
+
+    \item \textbf{Side-Channel Attack:} Exploiting information leaked during the execution of the encryption algorithm, such as power consumption, timing, or electromagnetic radiation.
+\end{itemize}
+
+To ensure robust security against such attacks, cryptographic algorithms and protocols are continuously analyzed, and improvements are made to resist known vulnerabilities.
+
+\section{Conclusion}
+In conclusion, cryptography and number theory are deeply intertwined, providing the foundation for secure digital communication. Modular arithmetic and Euler's totient function serve as fundamental tools for encryption algorithms and public-key cryptography. Symmetric encryption algorithms like AES efficiently encrypt large volumes of data, while public-key cryptography, exemplified by the RSA algorithm and Diffie-Hellman key exchange, enables secure key distribution over insecure channels.
+
+As technology advances, the study of mathematical principles behind cryptography remains critical to safeguarding sensitive information and ensuring secure communication in an increasingly interconnected world. Continuous research and advancements in cryptography will continue to shape the future of secure digital communication.
+
+\end{document}
