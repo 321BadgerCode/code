@@ -1,0 +1,38 @@
+[
+    {
+        "email": null,
+        "first_name": "billy",
+        "id": 1,
+        "last_name": "bob"
+    },
+    {
+        "email": null,
+        "first_name": "joe",
+        "id": 2,
+        "last_name": "jamison"
+    },
+    {
+        "email": null,
+        "first_name": "jimmy",
+        "id": 3,
+        "last_name": "joe"
+    },
+    {
+        "email": null,
+        "first_name": "circle",
+        "id": 4,
+        "last_name": "triangle"
+    },
+    {
+        "email": null,
+        "first_name": "worker",
+        "id": 5,
+        "last_name": "bee"
+    },
+    {
+        "email": null,
+        "first_name": "DROP TABLE employee",
+        "id": 6,
+        "last_name": ":)"
+    }
+]
